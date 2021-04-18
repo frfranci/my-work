@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>EZEAds v3.0 | Home</title>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+<!-- VENDOR CSS -->
+<link rel="stylesheet" href="/resources/theme/assets/vendor/bootstrap/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="/resources/theme/assets/vendor/font-awesome/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="/resources/theme/assets/vendor/animate-css/vivify.min.css"/>
+
+<!-- MAIN CSS -->
+<link rel="stylesheet" href="/resources/theme/dark/assets/css/site.min.css"/>
+
+</head>
+
+<body class="theme-cyan">
+    <div class="pattern">
+        <span class="red"></span>
+        <span class="indigo"></span>
+        <span class="blue"></span>
+        <span class="green"></span>
+        <span class="orange"></span>
+    </div>
+    <div class="auth-main particles_js">        
+        <div class="auth_div vivify popIn">
+            <div class="auth_brand">
+                <a class="navbar-brand" href="javascript:void(0);">EZEAds v3.0</a>                                                
+            </div>
+            <div class="card">
+                <div class="body">
+                    <p class="lead">Account Login</p>
+                    <form class="form-auth-small m-t-20" th:action="@{/login}" method="POST" name="login-form" th:autocomplete="off">
+                    	<div th:if="${!error.empty}">
+				            <div class="alert alert-danger">
+				                Username or password is invalid, please try again.
+				            </div>
+        				</div>
+				        <!-- <div class="alert alert-danger display-hide">
+				            <button class="close" data-close="alert"></button>
+				            <span> Enter any username and password. </span>
+				        </div> -->
+                        <div class="form-group">
+                            <label for="signin-email" class="control-label sr-only">Username</label>
+                            <input type="text" class="form-control" name="username" id="signin-email" value="" placeholder="Username" />
+                        </div>
+                        <div class="form-group">
+                            <label for="signin-password" class="control-label sr-only">Password</label>
+                            <input type="password" class="form-control" id="signin-password" name="password" value="" placeholder="Password" />
+                        </div>
+                         <div class="form-group">
+                            <label for="signin-authtype" class="control-label sr-only">Auth Type</label>
+                           <!--  <select id="authType" name="authType" class="form-control" size="1">												
+								<option value="local">Local</option>
+								<option value="ActiveDirectory">Active Directory</option>
+							</select> -->
+							<th:block th:if="${#lists.size(authList) > 0}">
+								<select class="form-control" th:required="required" id="authType" name="authType" th:size="1">														
+      								<option th:each="list : ${authList}" th:value="${list}" th:text="${list}" th:checked="${list}"></option>
+    							</select>
+    						</th:block>  
+                        </div>
+                        <!-- <div class="form-group clearfix">
+                            <label class="fancy-checkbox element-left">
+                                <input type="checkbox" />
+                                <span>Remember me</span>
+                            </label>								
+                        </div> -->
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                      <!--   <div class="bottom">
+                        	<span class="helper-text m-b-10"><i class="fa fa-lock"></i> <a href="/forgotPassword">Forgot password?</a></span>
+                        </div> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="particles-js"></div>
+    </div>
+    <!-- END WRAPPER -->
+    
+<script src="/resources/theme/dark/assets/bundles/libscripts.bundle.js"></script>    
+<script src="/resources/theme/dark/assets/bundles/vendorscripts.bundle.js"></script>
+<script src="/resources/theme/dark/assets/bundles/mainscripts.bundle.js"></script>
+</body>
+</html>
